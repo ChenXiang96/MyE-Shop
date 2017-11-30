@@ -32,5 +32,10 @@
 	     <action name="checkImg" class="checkImgAction">
 
 	     </action>
+	     	     <!-- 商品模块的Action -->
+	     <action name="product_*" class="productAction" method="{1}"> 
+            <result name="findByPid">/WEB-INF/jsp/product.jsp</result>
+                
+	     </action>
 	</package>
 </struts>

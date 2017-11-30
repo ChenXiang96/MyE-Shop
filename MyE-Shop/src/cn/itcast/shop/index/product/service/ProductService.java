@@ -28,4 +28,10 @@ public class ProductService {
 		return productDao.findHot();
 		
 	}
+	//根据商品pid完成查询商品
+		public Product findByPid(Integer pid){
+
+			return productDao.findByPid(pid); 
+
+		}
 }

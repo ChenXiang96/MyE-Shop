@@ -92,7 +92,7 @@
                  <figure class="item">
                 <div class="product product-style-2">
                   <div class="img-wrapper">
-                    <a href="shop-detail.html">
+                    <a   href="${pageContext.request.contextPath }/product_findByPid.action?pid=<s:property value="#p.pid"/>" >
                       <img class="img-responsive" src="${pageContext.request.contextPath}/<s:property value="#p.image"/>" alt="product thumbnail" />
                     </a>
                     <div class="product-control-wrapper bottom-right">
