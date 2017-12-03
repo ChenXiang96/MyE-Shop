@@ -17,7 +17,7 @@
           <div class="row1">
             <div class="header-1-inner">
               <a class="brand-logo animsition-link" href="index.html">
-                <img class="img-responsive" src="${pageContext.request.contextPath}/picture/logo.png" alt="" />
+                
               </a>
               <nav>
                 <ul class="menu hidden-xs">
