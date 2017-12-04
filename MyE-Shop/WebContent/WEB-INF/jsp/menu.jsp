@@ -12,7 +12,7 @@
               <nav>
                 <ul class="menu hidden-xs">
                   <li>
-                    <a href="index.html">首页</a>
+                    <a href="${pageContext.request.contextPath}/index.action">首页</a>
                     <ul>
                       <li>
                         <a href="index.html">Home Version 1</a>
