@@ -24,6 +24,7 @@
         <h3 class="heading-style-3">Shop</h3>
       </section>
       <%@ include file="category2.jsp" %>
+      
       <section class="boxed-sm">
         <div class="container">
           <div class="row">
@@ -58,6 +59,7 @@
                  
                 </div>
               </div>
+              
               <div class="col-md-9">
                 <div class="woocommerce-top-control wrapper">
                   <div class="woocommerce-top-control">
@@ -75,26 +77,32 @@
                   </div>
                 </div>
                 
+                
+                
+                
                 <div class="row product-grid-equal-height-wrapper product-equal-height-3-columns flex multi-row">
                 
                 <s:iterator var = "p" value="pageBean.list">
                   <figure class="item">
                     <div class="product product-style-1">
                       <div class="img-wrapper">
-                        <a href="shop-detail.html">
+                        <a  href="${pageContext.request.contextPath}/product_findByPid.action?pid=<s:property value="#p.pid"/>">
                           <img class="img-responsive" src="${pageContext.request.contextPath}/<s:property value="#p.image"/>" alt="product thumbnail" />
                         </a>
-                        <div class="product-control-wrapper bottom-right">
-                          <div class="wrapper-control-item">
-                            <a class="js-quick-view" href="#" type="button" data-toggle="modal" data-target="#quick-view-product">
-                              <span class="lnr lnr-eye"></span>
-                            </a>
-                          </div>
+                        
+                      <div class="product-control-wrapper bottom-right">
+                      <div class="wrapper-control-item">
+                        <a href="${pageContext.request.contextPath }/product_findByPid.action?pid=<s:property value="#p.pid"/>" type="button">
+                          <span class="lnr lnr-eye"></span>
+                        </a>
+                      </div>
+                          
                           <div class="wrapper-control-item item-wish-list">
                             <a class="js-wish-list js-notify-add-wish-list" href="#">
                               <span class="lnr lnr-heart"></span>
                             </a>
                           </div>
+                          
                           <div class="wrapper-control-item item-add-cart js-action-add-cart">
                             <a class="animate-icon-cart" href="#">
                               <span class="lnr lnr-cart"></span>
@@ -103,7 +111,9 @@
                               <path stroke-dasharray="19.79 19.79" fill="none" ,="," stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
                             </svg>
                           </div>
+                          
                         </div>
+                        
                       </div>
                       <figcaption class="desc text-center">
                         <h3>
@@ -117,6 +127,7 @@
 
                   
                 </div>
+                
                 <div class="row">
                   <div class="col-md-12 text-center">
                     <nav>
@@ -154,6 +165,7 @@
                       </ul>
                     </nav>
                   </div>
+               
                 </div>
               </div>
             </div>
@@ -162,134 +174,8 @@
       </section>
     </div>
        <%@ include file="footer.jsp" %>
-    <div class="modal fade" id="quick-view-product" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg modal-quickview woocommerce" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="woocommerce-product-gallery">
-                  <div class="main-carousel-product-quick-view">
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/01.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/02.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/03.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/04.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/05.jpg" alt="product thumbnail" />
-                    </div>
-                  </div>
-                  <div class="thumbnail-carousel-product-quickview">
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/01.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/02.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/03.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/04.jpg" alt="product thumbnail" />
-                    </div>
-                    <div class="item">
-                      <img class="img-responsive" src="${pageContext.request.contextPath}/picture/05.jpg" alt="product thumbnail" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="summary">
-                  <div class="desc">
-                    <div class="header-desc">
-                      <h2 class="product-title">Sald</h2>
-                      <p class="price">$2.00</p>
-                    </div>
-                    <div class="body-desc">
-                      <div class="woocommerce-product-details-short-description">
-                        <p>Duis vestibulum ante velit. Pellentesque orci felis, pharetra ut pharetra ut, interdum at mauris. Aenean efficitur aliquet libero sit amet scelerisque. Suspendisse efficitur mollis eleifend. Aliquam tortor nibh, venenatis quis
-                          sem dapibus, varius egestas lorem a sollicitudin. </p>
-                      </div>
-                    </div>
-                    <div class="footer-desc">
-                      <form class="cart">
-                        <div class="quantity buttons-added">
-                          <input class="minus" value="-" type="button" />
-                          <input class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number" />
-                          <input class="plus" value="+" type="button" />
-                        </div>
-                        <div class="group-btn-control-wrapper">
-                          <button class="btn btn-brand no-radius">ADD TO CART</button>
-                          <button class="btn btn-wishlist btn-brand-ghost no-radius">
-                            <i class="fa fa-heart"></i>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="product-meta">
-                    <p class="posted-in">Categories:
-                      <a href="#" rel="tag">Food</a>
-                    </p>
-                    <p class="tagged-as">Tags:
-                      <a href="#" rel="tag">Natural</a>,
-                      <a href="#" rel="tag">Organic</a>,
-                      <a href="#" rel="tag">Health</a>,
-                      <a href="#" rel="tag">Green</a>,
-                      <a href="#" rel="tag">Vegetable</a>
-                    </p>
-                    <p class="id">ID:
-                      <a href="#">A203</a>
-                    </p>
-                  </div>
-                  <div class="widget-social align-left">
-                    <ul>
-                      <li>
-                        <a class="facebook" data-toggle="tooltip" title="Facebook" href="http://www.facebook.com/authemes">
-                          <i class="fa fa-facebook"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="pinterest" data-toggle="tooltip" title="Pinterest" href="http://www.pinterest.com/authemes">
-                          <i class="fa fa-pinterest"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="twitter" data-toggle="tooltip" title="Twitter" href="http://www.twitter.com/authemes">
-                          <i class="fa fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="google-plus" data-toggle="tooltip" title="Google Plus" href="https://plus.google.com/authemes">
-                          <i class="fa fa-google-plus"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="instagram" data-toggle="tooltip" title="Instagram" href="https://instagram.com/authemes">
-                          <i class="fa fa-instagram"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  
+
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/function-check-viewport.js"></script>

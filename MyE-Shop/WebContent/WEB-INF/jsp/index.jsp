@@ -101,11 +101,11 @@
                           <span class="lnr lnr-eye"></span>
                         </a>
                       </div>
-                   <div class="wrapper-control-item">
-                        <a href="${pageContext.request.contextPath }/product_findByPid.action?pid=<s:property value="#p.pid"/>" type="button">
-                          <span class="lnr lnr-eye"></span>
-                        </a>
-                      </div>
+                   <div class="wrapper-control-item item-wish-list">
+                            <a class="js-wish-list js-notify-add-wish-list" href="#">
+                              <span class="lnr lnr-heart"></span>
+                            </a>
+                          </div>
                       <div class="wrapper-control-item item-add-cart js-action-add-cart">
                         <a class="animate-icon-cart" href="#">
                           <span class="lnr lnr-cart"></span>
