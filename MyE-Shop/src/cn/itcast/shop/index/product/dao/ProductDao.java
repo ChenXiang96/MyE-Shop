@@ -25,7 +25,7 @@ public class ProductDao extends HibernateDaoSupport {
 		//倒序排序输出
 		criteria.addOrder(Order.desc("pdate"));
 		//执行查询
-		List<Product> list = this.getHibernateTemplate().findByCriteria(criteria, 0,9);
+		List<Product> list = this.getHibernateTemplate().findByCriteria(criteria, 0,12);
 		return list;
 	}
 //根据商品pid查询商品
