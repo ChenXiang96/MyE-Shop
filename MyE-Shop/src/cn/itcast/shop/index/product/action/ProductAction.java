@@ -1,11 +1,13 @@
 package cn.itcast.shop.index.product.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import cn.itcast.shop.index.category.service.CategoryService;
 import cn.itcast.shop.index.product.service.ProductService;
 import cn.itcast.shop.index.product.vo.Product;
+import cn.itcast.shop.index.utils.PageBean;
 
 /**
  * 商品的action对象
@@ -22,9 +24,18 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 	private Integer cid;
     //注入一级分类的service
     private CategoryService categoryService;
+	//接受当前页数
+	private int page;
 	
+	
+	public void setPage(int page) {
+		this.page = page;
+	}
 	public void setCid(Integer cid) {
 		this.cid = cid;
+	}
+	public Integer getCid() {
+		return cid;
 	}
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
@@ -49,7 +60,9 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 		public String findByCid(){
 			//查询所有一级分类
 			//List<Category> cList = categoryService.findAll();
-			
+			 PageBean<Product> pageBean = productService.findByPageCid(cid,page);//根据一级分类查询商品，带分页的查询
+		    //将pageBean存入到值栈中
+			 ActionContext.getContext().getValueStack().set("pageBean",pageBean);
 			
 			return "findByCid";
 			

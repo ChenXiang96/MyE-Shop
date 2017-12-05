@@ -2,6 +2,8 @@ package cn.itcast.shop.index.product.vo;
 
 import java.util.Date;
 
+import cn.itcast.shop.index.categorysecond.vo.CategorySecond;
+
 /**
  * 商品的实体对象
  * @author lenovo
@@ -17,6 +19,7 @@ public class Product {
    private Integer is_hot;
    private Date pdate;
 //二级分类的外键：使用二级分类的对象
+   private CategorySecond categorySecond;
 public Integer getPid() {
 	return pid;
 }
@@ -65,6 +68,13 @@ public Date getPdate() {
 public void setPdate(Date pdate) {
 	this.pdate = pdate;
 }
+public CategorySecond getCategorySecond() {
+	return categorySecond;
+}
+public void setCategorySecond(CategorySecond categorySecond) {
+	this.categorySecond = categorySecond;
+}
+
    
    
 }
