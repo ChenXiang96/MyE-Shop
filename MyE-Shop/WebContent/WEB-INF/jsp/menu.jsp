@@ -61,7 +61,7 @@
                         <a href="wish-list.html">愿景清单</a>
                       </li>
                       <li>
-                        <a href="shop-cart.html">购物车</a>
+                        <a  href="${pageContext.request.contextPath }/cart_myCart.action">购物车</a>
                       </li>
                       <li>
                         <a href="check-out.html">查看</a>
@@ -162,7 +162,7 @@
                   </div>
                 </div>
                 <div class="widget widget-control-header widget-shop-cart js-widget-shop-cart">
-                  <a class="control" href="shop-cart.html">
+                  <a class="control"  href="${pageContext.request.contextPath }/cart_myCart.action">
                     <p class="counter">0</p>
                     <span class="lnr lnr-cart"></span>
                   </a>

@@ -45,7 +45,7 @@
                          
                          <s:iterator var="cs" value="#c.categorySeconds">
 									<dd>
-										<a ><s:property value="#cs.csname"/></a>
+										<a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="#cs.csid"/>&page=1"><s:property value="#cs.csname"/></a>
 									</dd>
 					     		 </s:iterator>
                          </s:iterator>
@@ -132,6 +132,8 @@
                   <div class="col-md-12 text-center">
                     <nav>
                       <span>第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页</span>
+                     <s:if test="cid != null">
+                     
                       <ul class="pagination pagination-style-2">
                       <s:if test="pageBean.page != 1">
                         <li>
@@ -163,6 +165,45 @@
                         </li>
                         </s:if>
                       </ul>
+                      
+                  </s:if>
+                  
+                  <s:if test="csid != null">
+                    
+                      <ul class="pagination pagination-style-2">
+                      <s:if test="pageBean.page != 1">
+                        <li>
+                           <a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&page=<s:property value="pageBean.page-1"/>" class="previousPage">
+                            <i class="fa fa-long-arrow-left"></i>
+                           </a>
+
+                        </li>
+                      </s:if>
+                      
+                       <s:iterator var="i" begin="1" end="pageBean.totalPage">
+                       <s:if test="pageBean.page != #i">
+                        <li>
+                        <a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&page=<s:property value="#i"/>"><s:property value="#i"/></a>
+                        </li>
+                        </s:if>
+                        <s:else>
+				          <span class="currentPage"><s:property value="#i"/></span>
+				        </s:else>
+                        </s:iterator>
+                        
+                        
+                         <s:if test="pageBean.page != pageBean.totalPage">
+                        <li>
+                          <a class="nextPage" href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&page=<s:property value="pageBean.page+1"/>">
+                          <i class="fa fa-long-arrow-right"></i>
+                          </a>
+                           
+                        </li>
+                        </s:if>
+                      </ul>
+                  
+                  
+                  </s:if>
                     </nav>
                   </div>
                

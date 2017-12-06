@@ -1,11 +1,12 @@
 package cn.itcast.shop.index.category.vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import cn.itcast.shop.index.categorysecond.vo.CategorySecond;
 
-public class Category {
+public class Category implements Serializable{
 	private Integer cid;
 	private String cname;
 	//与二级分类是双向一对多，需要有二级分类的set集合

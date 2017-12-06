@@ -78,6 +78,12 @@
 	     <!-- 注入service -->
 	     <property name="productService" ref="productService"/>
 	  </bean>
+	   <!-- 购物车的Action -->
+	  <bean id="cartAction" class="cn.itcast.shop.index.cart.action.CartAction" scope="prototype">
+        <!-- 注入service -->
+	     <property name="productService" ref="productService"/>       
+	  </bean>
+	  
 	    
 	<!-- Service的配置============================ -->
 	<bean id="userService" class="cn.itcast.shop.index.user.service.UserService">
