@@ -33,6 +33,10 @@
     	.woocommerce .form-coupon .form-group{
     	     text-align:left!important;
     	}
+    	.cart table img {
+    	      width:75px;
+    	      height:65px;
+    	}
 
     </style>
     <script src="js/jquery.min.js"></script>
@@ -115,7 +119,7 @@
                     
                     
                     <td class="product-price" data-title="Price" ><lable id="pri" name="pri"><s:property value="#cartItem.product.shop_price"/></lable></td>
-                    <td class="product-subtotal" data-title="Total" >￥<s:property value="#session.cart.total"/>元</td>
+                    <td class="product-subtotal" data-title="Total" >￥<s:property value="#cartItem.subtotal"/>元</td>
                     <td class="product-remove" >
                       <a class="remove"  href="${pageContext.request.contextPath }/cart_removeCart.action?pid=<s:property value="#cartItem.product.pid"/>" aria-label="Remove this item">×</a>
                     </td>
