@@ -19886,7 +19886,8 @@ ul.tabs {
 
 .woocommerce .woocommerce-cart-form .woocommerce-cart-table tfoot tr td .form-coupon .form-group {
   max-width: 200px;
-  margin: 0 15px;
+  float:left;
+  margin: 0 95px;
   display: inline-block;
   vertical-align: top;
 }

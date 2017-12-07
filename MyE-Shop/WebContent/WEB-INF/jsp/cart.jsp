@@ -14,11 +14,34 @@
     
     <link href="${pageContext.request.contextPath}/css/cart.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
+    <style>
+    	.quantity input{
+    		height:30px!important;
+    	}
+    	.quantity .plus,.quantity .minus{
+    		width:30px!important;
+    	}
+    	.quantity .qty{
+    		width:40px!important;
+    	}
+    	.woocommerce th{
+    		text-align:center!important;
+    	}
+    	.woocommerce td{
+    		text-align:center!important;
+    	}
+    	.woocommerce .form-coupon .form-group{
+    	     text-align:left!important;
+    	}
+    </style>
     <script src="js/jquery.min.js"></script>
      <script>  
     $(function(){  
     var t = $("#count2");  
-    $("#Add").click(function(){  
+    var pri = $("#pri");
+    //console.log(t);
+    
+    $("#Add").click(function(){ 
         t.val(parseInt(t.val())+1);  
         $("#min").removeAttr("disabled");                 //当按加1时，解除$("#min")不可读状态  
         setTotal();  
@@ -29,12 +52,12 @@
                 }else{  
                 $("#min").attr("disabled","disabled")        //当$("#min")为1时，设置$("#min")为不可读状态  
                }  
-        setTotal();  
+       setTotal();  
     })  
-    function setTotal(){  
-        $("#total").html((parseInt(t.val())*<s:property value="model.shop_price"/>).toFixed(2));  
-    }  
-    setTotal();  
+     function setTotal(){  
+         $("#total").html((parseInt(t.val())*(parseInt(pri.val()))));  
+     }  
+      setTotal();  
 })  
 </script> 
   </head>
@@ -55,8 +78,8 @@
          <s:if test="#session.cart.cartItems.size() != 0">
       
           <div class="woocommerce">
-            <form class="woocommerce-cart-form">
-              <table class="woocommerce-cart-table">
+            <form class="woocommerce-cart-form cart">
+              <table class="woocommerce-cart-table" >
                 <thead>
                   <tr>
                     <th class="product-thumbnail">图片</th>
@@ -80,14 +103,19 @@
                     </td>
                     <td class="product-weight" data-title="Weight">0.4 kg</td>
                      
-                     
-                  <td class="product-quantity" data-title="Quantity">
-                      <input class="qty" step="1" min="0" max="" name="product-name" value="<s:property value="#cartItem.count"/>" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number">
+       
+                  <td data-title="Quantity">
+                    <div class="quantity buttons-added">
+                     <input class="minus" value="-" type="button" id="min" name="">
+                      <input class="qty" id="count2" step="1" min="0" max="" name="product-name" value="<s:property value="#cartItem.count"/>" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="text">
+                       <input class="plus" value="+" type="button" id="Add" name="">
+                       </div>
                     </td>
                     
-                    <td class="product-price" data-title="Price">￥<s:property value="#cartItem.product.shop_price"/></td>
-                    <td class="product-subtotal" data-title="Total" id="subtotal">￥<s:property value="#cartItem.subtotal"/></td>
-                    <td class="product-remove">
+                    
+                    <td class="product-price" data-title="Price" ><lable id="pri" name="pri"><s:property value="#cartItem.product.shop_price"/></lable></td>
+                    <td class="product-subtotal" data-title="Total" >￥<s:property value="#session.cart.total"/>元</td>
+                    <td class="product-remove" >
                       <a class="remove"  href="${pageContext.request.contextPath }/cart_removeCart.action?pid=<s:property value="#cartItem.product.pid"/>" aria-label="Remove this item">×</a>
                     </td>
                   </tr>
@@ -96,6 +124,7 @@
                 <tfoot>
                   <tr>
                     <td colspan="7">
+                    
                       <div class="form-coupon organic-form">
                         <div class="form-group">
                           <input class="form-control pill" placeholder="Coupon Code">
