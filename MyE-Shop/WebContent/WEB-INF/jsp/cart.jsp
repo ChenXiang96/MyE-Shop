@@ -33,6 +33,7 @@
     	.woocommerce .form-coupon .form-group{
     	     text-align:left!important;
     	}
+
     </style>
     <script src="js/jquery.min.js"></script>
      <script>  
@@ -131,7 +132,7 @@
                         </div>
                         
                         <div class="form-group">
-                          <a class="btn btn-brand pill" href="#">APPLY COUPON</a>
+                          <a class="btn btn-brand pill" href="${pageContext.request.contextPath}/order_save.action">提交订单</a>
                         </div>
                         
                         <div class="form-group update-cart">
