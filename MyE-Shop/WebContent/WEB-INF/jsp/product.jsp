@@ -17,14 +17,32 @@
 		document.getElementById("cartForm").submit();
 	}
 	
-	 var plus = document.getElementById("plus");
-	 var count = document.getElementById("count");
-	 plus.onclick = function(){
-		count.value = parseInt(count.value)+1;
-	 }
 	
 	
     </script>
+    <script src="js/jquery.min.js"></script>
+    <script>  
+    $(function(){  
+    var t = $("#count");  
+    $("#Add").click(function(){  
+        t.val(parseInt(t.val())+1);  
+        $("#min").removeAttr("disabled");                 //当按加1时，解除$("#min")不可读状态  
+        setTotal();  
+    })  
+    $("#min").click(function(){  
+               if (parseInt(t.val())>1) {                     //判断数量值大于1时才可以减少  
+                t.val(parseInt(t.val())-1)  
+                }else{  
+                $("#min").attr("disabled","disabled")        //当$("#min")为1时，设置$("#min")为不可读状态  
+               }  
+        setTotal();  
+    })  
+    function setTotal(){  
+        $("#total").html((parseInt(t.val())*<s:property value="model.shop_price"/>).toFixed(2));  
+    }  
+    setTotal();  
+})  
+</script> 
   </head>
   <body class="animsition">
     <div class="shop-detail-3 woocommerce" id="page">
@@ -82,9 +100,10 @@
                          <input type="hidden" name="pid" value="<s:property value="model.pid"/>"/>
                          
                         <div class="quantity buttons-added">
-                          <input class="minus" value="-" type="button">
+                          <input class="minus" value="-" type="button" id="min" name="">
                           <input class="input-text qty text" step="1" min="1" max="" name="count"  id="count" value="1" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number">
-                          <input class="plus" value="+" type="button" id="plus" name="plus">
+                          <input class="plus" value="+" type="button" id="Add" name="">
+                          <p>小计：￥<label id="total"></label>元</p> 
                         </div>
                         
                         <div class="group-btn-control-wrapper">

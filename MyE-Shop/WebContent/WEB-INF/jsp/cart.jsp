@@ -12,8 +12,31 @@
     <link href="${pageContext.request.contextPath}/css/647be82565184316a7ba9bc638b40a97.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/1025b57c3b8b4b63a93efd3b6bed0d58.css" rel="stylesheet" />
     
-<link href="${pageContext.request.contextPath}/css/cart.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/cart.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
+    <script src="js/jquery.min.js"></script>
+     <script>  
+    $(function(){  
+    var t = $("#count2");  
+    $("#Add").click(function(){  
+        t.val(parseInt(t.val())+1);  
+        $("#min").removeAttr("disabled");                 //当按加1时，解除$("#min")不可读状态  
+        setTotal();  
+    })  
+    $("#min").click(function(){  
+               if (parseInt(t.val())>1) {                     //判断数量值大于1时才可以减少  
+                t.val(parseInt(t.val())-1)  
+                }else{  
+                $("#min").attr("disabled","disabled")        //当$("#min")为1时，设置$("#min")为不可读状态  
+               }  
+        setTotal();  
+    })  
+    function setTotal(){  
+        $("#total").html((parseInt(t.val())*<s:property value="model.shop_price"/>).toFixed(2));  
+    }  
+    setTotal();  
+})  
+</script> 
   </head>
   <body class="animsition">
     <div class="shop-cart" id="page">
@@ -56,13 +79,14 @@
                       <a class="product-name" href="shop-detail.html"><s:property value="#cartItem.product.pname"/></a>
                     </td>
                     <td class="product-weight" data-title="Weight">0.4 kg</td>
-                    
-                    <td class="product-quantity" data-title="Quantity">
+                     
+                     
+                  <td class="product-quantity" data-title="Quantity">
                       <input class="qty" step="1" min="0" max="" name="product-name" value="<s:property value="#cartItem.count"/>" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number">
                     </td>
                     
                     <td class="product-price" data-title="Price">￥<s:property value="#cartItem.product.shop_price"/></td>
-                    <td class="product-subtotal" data-title="Total">￥<s:property value="#cartItem.subtotal"/></td>
+                    <td class="product-subtotal" data-title="Total" id="subtotal">￥<s:property value="#cartItem.subtotal"/></td>
                     <td class="product-remove">
                       <a class="remove"  href="${pageContext.request.contextPath }/cart_removeCart.action?pid=<s:property value="#cartItem.product.pid"/>" aria-label="Remove this item">×</a>
                     </td>
