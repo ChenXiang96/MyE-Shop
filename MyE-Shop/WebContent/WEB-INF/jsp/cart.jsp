@@ -84,6 +84,7 @@
       
           <div class="woocommerce">
             <form class="woocommerce-cart-form cart">
+             
               <table class="woocommerce-cart-table" >
                 <thead>
                   <tr>
@@ -148,6 +149,7 @@
                 </tfoot>
               </table>
             </form>
+            
             <div class="cart_totals">
               <h3 class="title">Cart Total</h3>
               <div class="row">
@@ -173,7 +175,7 @@
         <s:else>
 			<div class="span24">
 			    <div class="call-to-action-style-1">
-					 <h2><font color="#A2CD5A">亲！您的购物车还是空滴嘞~</font></h2>
+					 <h2><font color="#A2CD5A">亲！您的购物车还是空滴~</font></h2>
 					 <h2>
 					  <img src="${pageContext.request.contextPath}/picture/gwc2.jpg" alt="">
 					 </h2>

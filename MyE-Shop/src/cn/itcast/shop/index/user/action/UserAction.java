@@ -110,7 +110,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
       * 跳转到登录页面的方法
       */
      public String loginPage(){
-  		return "login";
+  		return "loginPage";
   	}
      
      /**
