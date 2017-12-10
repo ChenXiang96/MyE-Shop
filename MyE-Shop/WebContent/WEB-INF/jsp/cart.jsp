@@ -14,6 +14,17 @@
     
     <link href="${pageContext.request.contextPath}/css/cart.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
+     <style>
+    img{
+    
+      vertical-align: middle;
+      width:auto;
+      height:auto;
+    }
+  
+  
+  
+  </style>
     <style>
     	.quantity input{
     		height:30px!important;

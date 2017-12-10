@@ -81,7 +81,33 @@
                  
                   <h4>您的订单</h4>
                   <table class="woocommerce-checkout-review-order-table">
+                  <s:iterator var="order" value="pageBean.list">
                     <thead>
+                   
+                      <tr>
+                       <th colspan="5">订单编号:
+						<s:property value="order.oid"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						订单状态：
+						<s:if test="#order.state == 1">
+						  <a href="#"><font color="red">付款<font/></a>
+						</s:if>
+						<s:if test="#order.state == 2">
+					         已付款
+						</s:if>
+						<s:if test="#order.state == 3">
+						  <a href="#"><font color="red">确认收货</font></a>
+						</s:if>
+						<s:if test="#order.state == 4">
+						  交易完成
+						</s:if>
+						
+						</th>
+                      </tr>
+                    </thead>
+                  
+                   <s:iterator var="orderItem" value="#order.orderItems">
+                    <thead>
+                   
                       <tr>
                         <th class="product-name">图片</th>
                         <th class="product-total">商品</th>
@@ -92,7 +118,7 @@
                     </thead>
                     
                     <tbody>
-                    <s:iterator var="orderItem" value="model.orderItems">
+                 
                       <tr class="cart_item">
                         <td class="product-thumbnail" width="60">
                          <img src="${pageContext.request.contextPath }/<s:property value="#orderItem.product.image"/>"/>
@@ -112,106 +138,68 @@
                         </td>
                         
                       </tr>
-                      </s:iterator>
-                      
-                         <tr>
-                          <td  colspan="5"><font color="red">订单总计:</font>￥<s:property value="model.total"/>元</td>
-                         </tr>
                       
                      
+                      
+                        
+                     
                     </tbody>
+                    </s:iterator>
+                    </s:iterator>
+                    <tr>
+                       <td colspan="5">
+                             <div class="row">
+                  <div class="col-md-12 text-center">
+                    <nav>
+                      <span>第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页</span>
+                     
+                     
+                      <ul class="pagination pagination-style-2">
+                      <s:if test="pageBean.page != 1">
+                        <li>
+                           <a href="${pageContext.request.contextPath}/order_findByUid.action?&page=1" class="previousPage">
+                            <i class="fa fa-long-arrow-left"></i>
+                           </a>
+
+                        </li>
+                      </s:if>
+                      
+                       <s:iterator var="i" begin="1" end="pageBean.totalPage">
+                       <s:if test="pageBean.page != #i">
+                        <li>
+                        <a href="${pageContext.request.contextPath}/order_findByUid.action?&page=<s:property value="#i"/>"><s:property value="#i"/></a>
+                        </li>
+                        </s:if>
+                        <s:else>
+				          <span class="currentPage"><s:property value="#i"/></span>
+				        </s:else>
+                        </s:iterator>
+                        
+                        
+                         <s:if test="pageBean.page != pageBean.totalPage">
+                        <li>
+                          <a class="nextPage" href="${pageContext.request.contextPath}/order_findByUid.action?&page=<s:property value="pageBean.page+1"/>">
+                          <i class="fa fa-long-arrow-right"></i>
+                          </a>
+                           
+                        </li>
+                        </s:if>
+                      </ul>
+                      
+     
+                  
+                 
+                    </nav>
+                  </div>
+               
+                </div>
+                     
                     
+                       </td>
+                    </tr>
                   </table>
                 </div>
-                
-                  <h4>账单明细</h4>
-                <div class="row">
-                  <div class="col-md-8">
-                    <div class="form-group organic-form no-radius">
-                      <label>收货人*</label>
-                      <input class="form-control" type="text" value="<s:property value="model.user.name"/>">
-                    </div>
-                  </div>
-                  
-                </div>
-                <div class="row">
-                  <div class="col-md-8">
-                    <div class="form-group organic-form no-radius">
-                      <label>收货地址</label>
-                      <input class="form-control" type="text" value="<s:property value="model.user.addr"/>">
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-8">
-                    <div class="form-group organic-form no-radius">
-                      <label>联系方式 *</label>
-                      <input class="form-control" type="email" value="<s:property value="model.user.phone"/>">
-                    </div>
-                  </div>
-                  
-                </div>
-                <div class="row">
-                  
-                  <div class="col-md-8">
-                    <div class="form-group organic-form no-radius">
-                      <label>邮箱*</label>
-                      <input class="form-control" type="text" value="<s:property value="model.user.email"/>">
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="woocommerce-checkout-payment">
-                  <div class="payment_method_cheque">
-                    <div class="radio">
-                      <label>
-                        <input class="input-radio" id="payment_method_cheque" name="payment_method" value="cheque" checked="checked" type="radio">Check Payments
-                        <div class="payment_box payment_method_cheque">
-                          <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                  
-                 
-                 
-                 <p>
-							选择银行：<br/>
-							<input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked"/>工商银行
-							<img src="${pageContext.request.contextPath }/bank_img/icbc.bmp" align="middle"/>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="pd_FrpId" value="BOC-NET-B2C"/>中国银行
-							<img src="${pageContext.request.contextPath }/bank_img/bc.bmp" align="middle"/>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="pd_FrpId" value="ABC-NET-B2C"/>农业银行
-							<img src="${pageContext.request.contextPath }/bank_img/abc.bmp" align="middle"/>
-							<br/>
-							<input type="radio" name="pd_FrpId" value="BOCO-NET-B2C"/>交通银行
-							<img src="${pageContext.request.contextPath }/bank_img/bcc.bmp" align="middle"/>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="pd_FrpId" value="PINGANBANK-NET"/>平安银行
-							<img src="${pageContext.request.contextPath }/bank_img/pingan.bmp" align="middle"/>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="pd_FrpId" value="CCB-NET-B2C"/>建设银行
-							<img src="${pageContext.request.contextPath }/bank_img/ccb.bmp" align="middle"/>
-							<br/>
-							<input type="radio" name="pd_FrpId" value="CEB-NET-B2C"/>光大银行
-							<img src="${pageContext.request.contextPath }/bank_img/guangda.bmp" align="middle"/>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C"/>招商银行
-							<img src="${pageContext.request.contextPath }/bank_img/cmb.bmp" align="middle"/>
-						</p>
-                 
-                 
-                 
-                 
-                 
-                  
-                  <div class="form-place-order">
-                    <noscript>Since your browser does not support JavaScript, or it is disabled, please ensure you click the
-                      <em>Update Totals</em> button before placing your order. You may be charged more than the amount stated above if you fail to do so.
-                      <br>
-                      <input class="button alt" type="submit" name="woocommerce_checkout_update_totals" value="Update totals">
-                    </noscript>
-                    <input class="place_order btn btn-brand pill" name="woocommerce_checkout_place_order" value="PLACE ORDER" data-value="Place order" type="submit">
-                  </div>
-                </div>
+             
               </form>
               
             </div>

@@ -110,6 +110,7 @@
                   <li>
                     <a href="contact.html">联系我们</a>
                   </li>
+                  
                   <li>
                   <s:if test="#session.existuser == null">
                   <li>
@@ -121,21 +122,25 @@
                   </li>
                  </s:if>
                  </li>
-         
-                 <li>
-                  <c:else>
+                  <li>
+                  <s:else>
                      <li>
-                       	<s:property value="#session.existuser.name"/>
+                       	<font color="#000"><s:property value="#session.existuser.name"/></font>
                      </li>
                      
                       <li style="margin-left:20px">|</li>
+                      <li>
+					   <a href="${pageContext.request.contextPath }/order_findByUid.action?page=1">我的订单</a>
+				      </li>
+                
                      
                      <li>
                          <a href="${pageContext.request.contextPath}/user_quit.action">退出</a>
                      </li>
 
-                  </c:else>
+                  </s:else>
                   </li>
+                 
                 </ul>
               </nav>
               <aside class="right">

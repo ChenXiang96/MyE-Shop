@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+   
     <footer class="footer-style-1">
       <div class="container">
         <div class="row">
           <div class="footer-style-1-inner">
             <div class="widget-footer widget-text col-first col-small">
               <a href="#">
-                <img class="logo-footer" src="${pageContext.request.contextPath}/picture/logo.png" alt="Logo Organic" />
+                <img src="${pageContext.request.contextPath}/picture/logo.png" alt="Logo Organic"/>
               </a>
               <div class="widget-link">
                 <ul>
@@ -102,7 +104,7 @@
                 <ul class="list-unstyle">
                   <li>
                     <a href="#">
-                      <img src="${pageContext.request.contextPath}/picture/creadit-card-01.png" alt="creadit card" />
+                      <img width:40 src="${pageContext.request.contextPath}/picture/creadit-card-01.png" alt="creadit card" />
                     </a>
                   </li>
                   <li>

@@ -27,7 +27,13 @@ import com.opensymphony.xwork2.ModelDriven;
 public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	// 模型驱动使用的对象
 		private Order order = new Order();
+		//接收Page参数
+		private Integer page;
+		
 
+		public void setPage(Integer page) {
+			this.page = page;
+		}
 		public Order getModel() {
 			return order;
 		}
@@ -86,6 +92,20 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 			
 			return "saveSuccess";
 		}
+		//用户订单的查询
+		public String findByUid(){
+			//根据用户id查询
+			User existUser = (User) ServletActionContext.getRequest().getSession()
+					.getAttribute("existuser");
+			Integer uid =existUser.getUid();
+			//调用service
+			PageBean<Order> pageBean = orderService.findByPageUid(uid, page);
+			//将分页数据显示到页面上
+			ActionContext.getContext().getValueStack().set("pageBean", pageBean);
+			return "findByUidSuccess";
+
+		}
+
 
 		
 	

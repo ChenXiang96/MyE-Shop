@@ -13,6 +13,17 @@
     <link href="${pageContext.request.contextPath}/css/647be82565184316a7ba9bc638b40a97.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/1025b57c3b8b4b63a93efd3b6bed0d58.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
+     <style>
+    img{
+    
+      vertical-align: middle;
+      width:auto;
+      height:auto;
+    }
+  
+  
+  
+  </style>
     <script>
        function checkForm(){
     	   //校验用户名

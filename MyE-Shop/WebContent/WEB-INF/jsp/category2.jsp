@@ -3,6 +3,17 @@
 
   <head>
     <title>category</title>
+     <style>
+    img{
+    
+      vertical-align: middle;
+      width:auto;
+      height:auto;
+    }
+  
+  
+  
+  </style>
 
     <style type="text/css">
       .row1{
