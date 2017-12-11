@@ -34,4 +34,10 @@ public class OrderDao extends HibernateDaoSupport {
     return list;
     	
     }
+  //数据持久层通过OID查找订单
+    public Order findByOid(Integer oid){
+    	return this.getHibernateTemplate().get(Order.class,oid);
+    			
+    	
+    }
 }
