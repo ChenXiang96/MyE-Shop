@@ -30,6 +30,7 @@
 	     <result name="loginSuccess" type="redirectAction">index</result>
 	      <result name="quit" type="redirectAction">index</result>
 	      <result name="checkcodeFail">/WEB-INF/jsp/register.jsp</result>
+	      <result name="deleteSuccess" type="redirectAction">adminCategory_findAll</result>
 	      
 	      
 	   </action>
@@ -64,6 +65,12 @@
 			<result name="loginSuccess" type="redirect">/admin/home.jsp</result>
 			
 			
+		</action>
+		<!-- 后台一级分类管理的action -->
+		<action name="adminCategory_*" class="adminCategoryAction" method="{1}">
+			<result name="findAll">/admin/category/list.jsp</result>
+			<result name="saveSuccess" type="redirectAction">adminCategory_findAll.action</result>
+			<result name="deleteSuccess" type="redirectAction">adminCategory_findAll</result>
 		</action>
 	</package>
 </struts>
