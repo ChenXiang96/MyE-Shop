@@ -98,6 +98,11 @@
 	<bean id="adminCategoryAction" class="cn.itcast.shop.index.category.adminaction.AdminCategoryAction" scope="prototype">
 		<property name="categoryService" ref="categoryService"/>
 	</bean>
+	<!-- 配置后台二级分类管理的Action -->
+	<bean id="adminCategorySecondAction" class="cn.itcast.shop.index.categorysecond.adminaction.AdminCategorySecondAction" scope="prototype">
+		<property name="categorySecondService" ref="categorySecondService"/>
+		
+	</bean>
 	
 	
 	  
@@ -119,6 +124,9 @@
 	<bean id="adminUserService" class="cn.itcast.shop.index.adminuser.service.AdminUserService">
 		<property name="adminUserDao" ref="adminUserDao"/>
 	</bean>
+	<bean id="categorySecondService" class="cn.itcast.shop.index.categorysecond.service.CategorySecondService">
+		<property name="categorySecondDao" ref="categorySecondDao"/>
+	</bean>
 	
 	<!-- Dao的配置 ============================-->
      <bean id="userDao" class="cn.itcast.shop.index.user.dao.UserDao">
@@ -135,6 +143,9 @@
         <property name="sessionFactory" ref="sessionFactory"/>
      </bean>
       <bean id="adminUserDao" class="cn.itcast.shop.index.adminuser.dao.AdminUserDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	  <bean id="categorySecondDao" class="cn.itcast.shop.index.categorysecond.dao.CategorySecondDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 </beans>

@@ -32,7 +32,7 @@
 	
 </div>
 
-<div class="copyright">© 2016品牌名称 by<a href="http://www.17sucai.com/" target="_blank">17素材网</a></div>
+<div class="copyright">Organic<a href="${pageContext.request.contextPath}/index.action"target="_blank">返回首页</a></div>
 
 </body>
 </html>

@@ -11,7 +11,7 @@ import cn.itcast.shop.index.category.vo.Category;
  * @author lenovo
  *
  */
-//Dao层查询所有一级分类的方法
+//查询所有一级分类的方法
 public class CategoryDao extends HibernateDaoSupport{
    public List<Category> findAll(){
 	   String hql = "from Category";
@@ -27,8 +27,13 @@ public class CategoryDao extends HibernateDaoSupport{
 	public Category findByCid(Integer cid) {
 		return this.getHibernateTemplate().get(Category.class, cid);
 	}
-// DAO中删除一级分类
+//  删除一级分类
 	public void delete(Category category) {
 		this.getHibernateTemplate().delete(category);
+	}
+//更新一级分类
+	public void update(Category category){
+		this.getHibernateTemplate().update(category);
+		
 	}
 }
