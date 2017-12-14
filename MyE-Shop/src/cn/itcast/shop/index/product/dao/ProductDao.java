@@ -94,7 +94,17 @@ public class ProductDao extends HibernateDaoSupport {
 					}
 					return null;
 				}
-						
+				public void save(Product product) {
+					this.getHibernateTemplate().save(product);
+				}
+				public void delete(Product product) {
+					// TODO Auto-generated method stub
+					this.getHibernateTemplate().delete(product);
+				}
+				public void update(Product product) {
+					// TODO Auto-generated method stub
+					this.getHibernateTemplate().update(product);
+				}	
 				
 				
 	

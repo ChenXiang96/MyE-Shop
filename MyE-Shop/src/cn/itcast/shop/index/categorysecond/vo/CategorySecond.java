@@ -30,6 +30,7 @@ public class CategorySecond {
 	public void setCsname(String csname) {
 		this.csname = csname;
 	}
+
 	public Category getCategory() {
 		return category;
 	}

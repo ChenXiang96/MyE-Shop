@@ -16,14 +16,15 @@ import cn.itcast.shop.index.utils.PageBean;
 @Transactional
 public class ProductService {
   //注入Dao
-	private ProductDao productDao;
+	private  ProductDao productDao;
     
 	
+
+
+
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
 	}
-
-
 	//查询首页上显示的热门商品
 	public List<Product> findHot(){
 		return productDao.findHot();
@@ -120,6 +121,22 @@ public class ProductService {
 			return pageBean;
 			
 		}
+		public void save(Product product) {
+			// TODO Auto-generated method stub
+			productDao.save(product);
+		}
+		
+		public void delete(Product product) {
+			// TODO Auto-generated method stub
+			productDao.delete(product);
+		}
+		public void update(Product product) {
+			// TODO Auto-generated method stub
+			productDao.update(product);
+		}
+
+        //保存商品
+		
 		
 		
 }

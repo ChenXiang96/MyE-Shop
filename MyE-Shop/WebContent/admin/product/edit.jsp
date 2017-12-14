@@ -8,13 +8,15 @@
 	</HEAD>
 	
 	<body>
-		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/adminProduct_save.action" method="post" enctype="multipart/form-data">
+		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/adminProduct_update.action" method="post" enctype="multipart/form-data">
+			 <input type="hidden" name="pid" value="<s:property value="model.pid"/>"/>
+			  <input type="hidden" name="image" value="<s:property value="model.image"/>"/>
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>
 					<td class="ta_01" align="center" bgColor="#afd1f3" colSpan="4"
 						height="26">
-						<strong><STRONG>添加商品</STRONG>
+						<strong><STRONG>编辑商品</STRONG>
 						</strong>
 					</td>
 				</tr>
@@ -24,7 +26,7 @@
 						商品名称：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" >
-						<input type="text" name="pname" value="" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="pname" value="<s:property value="model.pname"/>" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
 						所属的二级分类：
@@ -32,7 +34,8 @@
 					<td class="ta_01" bgColor="#ffffff" >
 						<select name="categorySecond.csid">
 							<s:iterator var="cs" value="csList">
-								<option value="<s:property value="#cs.csid"/>"><s:property value="#cs.csname"/></option>
+							   
+								<option value="<s:property value="#cs.csid"/>" <s:if test="#cs.csid == model.categorySecond.csid">selected</s:if>><s:property value="#cs.csname"/></option>
 							</s:iterator>
 						</select>
 					</td>
@@ -43,13 +46,13 @@
 						商品市场价：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" >
-						<input type="text" name="market_price" value="" id="userAction_save_do_logonName" class="bg"/>
+						<input type="text" name="market_price" value="<s:property value="model.market_price"/>" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
 						商品商城价：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" >
-							<input type="text" name="shop_price" value="" id="userAction_save_do_logonName" class="bg"/>
+							<input type="text" name="shop_price" value="<s:property value="shop_price"/>" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 				</tr>
 				
@@ -60,8 +63,8 @@
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3" >
 					  <select name="is_hot">
-					     <option value="1">yes</option>
-					     <option value="0">no</option>
+					     <option value="1" <s:if test="#model.is_hot == 1">selected</s:if>>yes</option>
+					     <option value="0" <s:if test="#model.is_hot == 0">selected</s:if>>no</option>
 					  </select>
 					</td>
 				</tr>
@@ -80,7 +83,7 @@
 						商品简介：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" >
-						<textarea rows="5" cols="28" name="pdesc"></textarea>
+						<textarea rows="5" cols="28" name="pdesc"><s:property value="model.pdesc"/></textarea>
 					</td>
 				
 				</tr>

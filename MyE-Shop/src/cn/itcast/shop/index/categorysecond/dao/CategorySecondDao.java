@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import cn.itcast.shop.index.categorysecond.service.CategorySecondService;
+
 import cn.itcast.shop.index.categorysecond.vo.CategorySecond;
 import cn.itcast.shop.index.utils.PageHibernateCallback;
 
@@ -61,5 +61,6 @@ public class CategorySecondDao extends HibernateDaoSupport{
 		String hql = "from CategorySecond";
 		return this.getHibernateTemplate().find(hql);
 	}
+
 	
 }
