@@ -40,4 +40,28 @@ public class OrderDao extends HibernateDaoSupport {
     			
     	
     }
+    //后台
+	public int findCount() {
+		// TODO Auto-generated method stub
+		String hql = "select Count(*) from Order";
+		List<Long> list = this.getHibernateTemplate().find(hql);
+		if(list != null && list.size()>0){
+    		return list.get(0).intValue();
+    	}
+		return 0;
+	}
+	
+	public List<Order> findByPage(int begin, int limit) {
+		// TODO Auto-generated method stub
+		String hql = "from Order order by ordertime desc";
+		List<Order> list = this.getHibernateTemplate().execute(new PageHibernateCallback<Order>(hql,null,begin,limit));
+		if(list != null && list.size()>0){
+    		return list;
+    	}
+		
+		
+		return null;
+		
+	}
+	
 }

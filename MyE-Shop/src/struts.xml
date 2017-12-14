@@ -95,6 +95,9 @@
 	           <result name="updateSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
 	         
 		</action>
-		
+		<!-- 后台订单管理 -->
+	 	<action name="adminOrder_*" class="adminOrderAction" method="{1}">
+	     <result name="findAll">/admin/order/list.jsp</result>
+       </action>
 	</package>
 </struts>

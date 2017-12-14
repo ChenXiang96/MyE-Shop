@@ -61,4 +61,31 @@ public class OrderService {
 			
 			
 		}
+		//后台查订单
+		public PageBean<Order> findAllByPage(Integer page) {
+		    PageBean<Order> pageBean = new PageBean<Order>();
+		    //当前页数
+		    pageBean.setPage(page);
+		    //当前显示记录数
+		    int limit = 10;
+		    pageBean.setLimit(limit);
+		    int totalCount = orderDao.findCount();
+			pageBean.setTotalCount(totalCount);
+			// 设置总页数
+			int totalPage = 0;
+			if(totalCount % limit == 0){
+				totalPage = totalCount / limit;
+			}else{
+				totalPage = totalCount / limit + 1;
+			}
+			pageBean.setTotalPage(totalPage);
+			// 设置每页显示数据集合
+			int begin = (page - 1) * limit;
+			List<Order> list = orderDao.findByPage(begin,limit);
+			pageBean.setList(list);
+			return pageBean;
+		    
+			
+		}
+	
 }

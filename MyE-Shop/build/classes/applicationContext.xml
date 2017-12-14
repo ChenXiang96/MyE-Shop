@@ -108,6 +108,10 @@
 	  <property name="productService" ref="productService"/>
 	  <property name="categorySecondService" ref="categorySecondService"/>
 	</bean>
+	<!-- 后台订单管理的Action -->
+	<bean id="adminOrderAction" class="cn.itcast.shop.index.order.adminaction.AdminOrderAction" scope="prototype">
+           <property name="orderService" ref="orderService"/>
+    </bean>
 	
 	
 	  
