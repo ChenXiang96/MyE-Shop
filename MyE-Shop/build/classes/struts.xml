@@ -9,6 +9,7 @@
     <constant name="struts.devMode" value="false" />
    
 	<package name="shop2" extends="struts-default" namespace="/">
+	
 	 <global-results>
 	      
 	        <result name="login">/WEB-INF/jsp/login.jsp</result>
@@ -98,6 +99,7 @@
 		<!-- 后台订单管理 -->
 	 	<action name="adminOrder_*" class="adminOrderAction" method="{1}">
 	     <result name="findAll">/admin/order/list.jsp</result>
+	     <result name="findOrderItem" >/admin/order/orderItem.jsp</result>
        </action>
 	</package>
 </struts>

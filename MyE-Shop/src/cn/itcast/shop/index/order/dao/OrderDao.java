@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.itcast.shop.index.order.vo.Order;
+import cn.itcast.shop.index.order.vo.OrderItem;
 import cn.itcast.shop.index.utils.PageHibernateCallback;
 
 /**
@@ -63,5 +64,13 @@ public class OrderDao extends HibernateDaoSupport {
 		return null;
 		
 	}
-	
+	public List<OrderItem> findOrderItem(Integer oid) {
+		String hql = "from OrderItem oi where oi.order.oid = ?";
+		List<OrderItem> list = this.getHibernateTemplate().find(hql, oid);
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
+	}
+
 }

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.shop.index.order.dao.OrderDao;
 import cn.itcast.shop.index.order.vo.Order;
+import cn.itcast.shop.index.order.vo.OrderItem;
 import cn.itcast.shop.index.utils.PageBean;
 
 /**
@@ -86,6 +87,10 @@ public class OrderService {
 			return pageBean;
 		    
 			
+		}
+		public List<OrderItem> findOrderItem(Integer oid) {
+			// TODO Auto-generated method stub
+			return orderDao.findOrderItem(oid);
 		}
 	
 }
