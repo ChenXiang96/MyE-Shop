@@ -77,6 +77,18 @@
 		<!-- 后台二级分类管理Action -->
 		<action name="adminCategorySecond_*" class="adminCategorySecondAction" method="{1}">
 	    	<result name="findAll">/admin/categorysecond/list.jsp</result>
+	        <result name="addPage">/admin/categorysecond/add.jsp</result>
+	        <result name="saveSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+	        <result name="deleteSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+	        <result name="editSuccess">/admin/categorysecond/edit.jsp</result>
+	        <result name="updateSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+		   
 		</action>
+		<!-- 后台商品管理的Action -->
+		<action name="adminProduct_*" class="adminProductAction" method="{1}">
+            <result name="findAll">/admin/product/list.jsp</result>
+		    <result name="addPageSuccess">/admin/product/add.jsp</result>
+		</action>
+		
 	</package>
 </struts>

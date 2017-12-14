@@ -101,7 +101,12 @@
 	<!-- 配置后台二级分类管理的Action -->
 	<bean id="adminCategorySecondAction" class="cn.itcast.shop.index.categorysecond.adminaction.AdminCategorySecondAction" scope="prototype">
 		<property name="categorySecondService" ref="categorySecondService"/>
-		
+			<property name="categoryService" ref="categoryService"/>
+	</bean>
+	<!-- 配置后台商品管理的Action -->
+	<bean id="adminProductAction" class="cn.itcast.shop.index.product.adminaction.AdminProductAction" scope="prototype">
+	  <property name="productService" ref="productService"/>
+	  <property name="categorySecondService" ref="categorySecondService"/>
 	</bean>
 	
 	

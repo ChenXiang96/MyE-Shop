@@ -45,6 +45,29 @@ public class CategorySecondService {
         pageBean.setList(list);
 		return pageBean;
 	}
+	//保存二级分类的方法
+		public void save(CategorySecond categorySecond) {
+			categorySecondDao.save(categorySecond);
+		}
+   //删除二级分类的方法
+		public void delete(CategorySecond categorySecond){
+			categorySecondDao.delete(categorySecond);
+		}
+   //查询所有二级分类的方法
+      public CategorySecond findByCsid(Integer csid) {
+			return categorySecondDao.findByCsid(csid);
+		}
+
+      public void update(CategorySecond categorySecond) {
+  		      categorySecondDao.update(categorySecond);
+  	}
+    //查询所有二级分类的方法
+	public List<CategorySecond> findAll() {
+		// TODO Auto-generated method stub
+	 return categorySecondDao.findAll();
+	}
+ 
+
 	
 	
 
