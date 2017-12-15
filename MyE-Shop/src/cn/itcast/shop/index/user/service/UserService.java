@@ -1,10 +1,13 @@
 package cn.itcast.shop.index.user.service;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.shop.index.user.dao.UserDao;
 import cn.itcast.shop.index.user.vo.User;
 import cn.itcast.shop.index.utils.MailUtils;
+import cn.itcast.shop.index.utils.PageBean;
 import cn.itcast.shop.index.utils.UUIDutils;
 
 /**
@@ -51,6 +54,40 @@ public class UserService {
 		//用户登录
 		public User login(User user){
 			return userDao.login(user);
+		}
+		
+
+		public PageBean<User> findByPage(Integer page) {
+			PageBean<User> pageBean = new PageBean<User>();
+			// 设置当前页数:
+			pageBean.setPage(page);
+			// 设置每页显示记录数:
+			// 显示5个
+			int limit = 5;
+			pageBean.setLimit(limit);
+			// 设置总记录数:
+			int totalCount = 0;
+			totalCount = userDao.findCount();
+			pageBean.setTotalCount(totalCount);
+			// 设置总页数
+			int totalPage = 0;
+			if(totalCount % limit == 0){
+				totalPage = totalCount / limit;
+			}else{
+				totalPage = totalCount / limit + 1;
+			}
+			pageBean.setTotalPage(totalPage);
+			// 设置每页显示数据集合:
+			int begin = (page - 1)*limit;
+			List<User> list = userDao.findByPage(begin,limit);
+			pageBean.setList(list);
+			return pageBean;
+		}
+		public User findByUid(Integer uid) {
+			return userDao.findByUid(uid);
+		}
+		public void delete(User existUser) {
+			userDao.delete(existUser);
 		}
 		
 		

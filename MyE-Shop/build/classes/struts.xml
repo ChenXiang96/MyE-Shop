@@ -101,5 +101,12 @@
 	     <result name="findAll">/admin/order/list.jsp</result>
 	     <result name="findOrderItem" >/admin/order/orderItem.jsp</result>
        </action>
+       <!-- 后台用户管理Action -->
+		<action name="userAdmin_*" class="userAdminAction" method="{1}">
+			<result name="findAll">/admin/user/list.jsp</result>
+			<result name="deleteSuccess" type="redirectAction">userAdmin_findAll.action?page=1</result>
+			<result name="editSuccess">/admin/user/edit.jsp</result>
+		    <result name="updateSuccess" type="redirectAction">userAdmin_findAll.action?page=1</result>
+		</action>
 	</package>
 </struts>

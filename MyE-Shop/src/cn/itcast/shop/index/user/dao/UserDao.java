@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.itcast.shop.index.user.vo.User;
+import cn.itcast.shop.index.utils.PageHibernateCallback;
 
 /**
  * 用户模块数据持久层代码
@@ -52,7 +53,28 @@ public class UserDao extends HibernateDaoSupport{
 			return null;
 		   
 		}
-	
+		public int findCount() {
+			String hql = "select count(*) from User";
+			List<Long> list = this.getHibernateTemplate().find(hql);
+			if (list != null && list.size() > 0) {
+				return list.get(0).intValue();
+			}
+			return 0;
+		}
+
+		public List<User> findByPage(int begin, int limit) {
+			String hql = "from User";
+			List<User> list = this.getHibernateTemplate().execute(
+					new PageHibernateCallback<User>(hql, null, begin, limit));
+			return list;
+		}
+		public User findByUid(Integer uid) {
+			return this.getHibernateTemplate().get(User.class, uid);
+		}
+		
+	   public void delete(User existUser) {
+		this.getHibernateTemplate().delete(existUser);
+	}
 	
 	
 }
