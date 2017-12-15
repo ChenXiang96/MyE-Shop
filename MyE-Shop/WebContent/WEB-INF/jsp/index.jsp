@@ -88,12 +88,7 @@
             <h3 class="heading">Our Products</h3>
           </div>
       <%@ include file="category.jsp" %>
-          
 
-
-          
-          
-          
           <div class="row">
             <div class="row js-product-masonry-layout-1 product-masonry-layout-1">
               <div class="grid-sizer"></div>

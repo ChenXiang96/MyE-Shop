@@ -92,5 +92,10 @@ public class OrderService {
 			// TODO Auto-generated method stub
 			return orderDao.findOrderItem(oid);
 		}
+		public void delete(Order order) {
+			// TODO Auto-generated method stub
+			orderDao.delete(order);
+		}
+		
 	
 }

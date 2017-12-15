@@ -33,8 +33,12 @@
 	      <result name="quit" type="redirectAction">index</result>
 	      <result name="checkcodeFail">/WEB-INF/jsp/register.jsp</result>
 	      <result name="deleteSuccess" type="redirectAction">adminCategory_findAll</result>
-	      
-	      
+	      <result name="editOK">/WEB-INF/jsp/editOK.jsp</result>
+	     <result name="updateOK">/WEB-INF/jsp/login.jsp</result>
+	      <result name="blog">/WEB-INF/jsp/blog.jsp</result>
+	       <result name="about">/WEB-INF/jsp/about.jsp</result>
+	        <result name="contact">/WEB-INF/jsp/contact.jsp</result>
+
 	   </action>
 	   
 	    <!-- 验证码的Action -->
@@ -100,6 +104,7 @@
 	 	<action name="adminOrder_*" class="adminOrderAction" method="{1}">
 	     <result name="findAll">/admin/order/list.jsp</result>
 	     <result name="findOrderItem" >/admin/order/orderItem.jsp</result>
+	       <result name="deleteSuccess" type="redirectAction">adminOrder_findAll.action?page=1</result>
        </action>
        <!-- 后台用户管理Action -->
 		<action name="userAdmin_*" class="userAdminAction" method="{1}">

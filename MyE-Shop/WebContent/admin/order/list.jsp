@@ -94,6 +94,9 @@
 									<td width="*" align="center">
 									       订单详情
 									</td>
+									<td width="*" align="center">
+									    删除订单
+									</td>
 								</tr>
 									<s:iterator var="order" value="pageBean.list" status="status">
 										<tr onmouseover="this.style.backgroundColor = 'white'"
@@ -127,6 +130,13 @@
 												<input id="but<s:property value="#order.oid"/>" type="button" value="订单详情" onclick="showDetail(<s:property value="#order.oid"/>)"/>
 											    <div id="div<s:property value="#order.oid"/>"></div>
 											</td>
+											
+										    <td align="center" style="HEIGHT: 22px">
+												<a href="${ pageContext.request.contextPath }/adminOrder_delete.action?oid=<s:property value="#order.oid"/>">
+													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
+												</a>
+											</td>
+											
 									
 										
 										</tr>

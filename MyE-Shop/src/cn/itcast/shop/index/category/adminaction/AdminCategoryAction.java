@@ -47,7 +47,7 @@ public class AdminCategoryAction extends ActionSupport implements ModelDriven<Ca
 	// 删除一级分类的方法:
 			public String delete(){
 				// 调用Service完成 一级分类的删除
-				// 级联删除一定先查询在删除:
+				// 级联删除一定先查询再删除:
 				category = categoryService.findByCid(category.getCid());
 				categoryService.delete(category);
 				// 进行页面转向:

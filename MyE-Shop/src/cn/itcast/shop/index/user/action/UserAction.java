@@ -145,7 +145,27 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
     	 //页面跳转到首页
     	return "quit";
      }
-     
+     //跳转到显示用户信息的页面
+     public String edit(){
+    	user = userService.findByUid(user.getUid());
+	     return "editOK";
+
+     }
+     //修改自己信息
+     public String update(){
+        
+    	 userService.update(user);
+	     return "updateOK";
+     }
+     public String blog(){
+    	 return "blog";
+     }
+     public String about(){
+    	 return "about";
+     }
+     public String contact(){
+    	 return "contact";
+     }
      
 
 }

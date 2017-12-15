@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.itcast.shop.index.categorysecond.vo.CategorySecond;
 import cn.itcast.shop.index.order.vo.Order;
 import cn.itcast.shop.index.order.vo.OrderItem;
 import cn.itcast.shop.index.utils.PageHibernateCallback;
@@ -72,5 +73,11 @@ public class OrderDao extends HibernateDaoSupport {
 		}
 		return null;
 	}
+	public void delete(Order order) {
+		// TODO Auto-generated method stub
+        this.getHibernateTemplate().delete(order);
+
+	}
+	
 
 }

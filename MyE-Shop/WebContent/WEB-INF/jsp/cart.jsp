@@ -82,7 +82,7 @@
      
        <%@ include file="menu.jsp" %>
       <section class="sub-header shop-detail-1">
-        <img class="rellax bg-overlay" src="${pageContext.request.contextPath}/picture/013.jpg" alt="">
+        <img class="rellax bg-overlay" src="${pageContext.request.contextPath}/picture/st.jpg" alt="">
         <div class="overlay-call-to-action"></div>
         <h3 class="heading-style-3">Shop Cart</h3>
       </section>

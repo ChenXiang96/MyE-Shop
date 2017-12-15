@@ -50,7 +50,7 @@ public class UserAdminAction extends ActionSupport implements ModelDriven<User>{
 		public String edit(){
 			user = userService.findByUid(user.getUid());
 			return "editSuccess";
-		}
+  }
 
 		public String update(){
 			userService.update(user);
