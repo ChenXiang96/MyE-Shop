@@ -112,7 +112,8 @@
                             </a>
                           </div>
                       <div class="wrapper-control-item item-add-cart js-action-add-cart">
-                        <a class="animate-icon-cart" href="#">
+                <a class="animate-icon-cart"  href="${pageContext.request.contextPath }/product_findByPid.action?pid=<s:property value="#p.pid"/>">
+                                        
                           <span class="lnr lnr-cart"></span>
                         </a>
                         <svg x="0px" y="0px" width="36px" height="32px" viewbox="0 0 36 32">

@@ -10,10 +10,26 @@ Target Server Type    : MYSQL
 Target Server Version : 50615
 File Encoding         : 65001
 
-Date: 2017-12-10 15:10:01
+Date: 2017-12-15 19:51:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `adminuser`
+-- ----------------------------
+DROP TABLE IF EXISTS `adminuser`;
+CREATE TABLE `adminuser` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of adminuser
+-- ----------------------------
+INSERT INTO `adminuser` VALUES ('1', 'admin', 'admin');
 
 -- ----------------------------
 -- Table structure for `category`
@@ -23,7 +39,7 @@ CREATE TABLE `category` (
   `cid` int(11) NOT NULL AUTO_INCREMENT,
   `cname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of category
@@ -48,16 +64,16 @@ CREATE TABLE `categorysecond` (
   PRIMARY KEY (`csid`),
   KEY `FK936FCAF21DB1FD15` (`cid`),
   CONSTRAINT `FK936FCAF21DB1FD15` FOREIGN KEY (`cid`) REFERENCES `category` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of categorysecond
 -- ----------------------------
-INSERT INTO `categorysecond` VALUES ('1', '库存新鲜', '1');
-INSERT INTO `categorysecond` VALUES ('2', '本季热销', '1');
-INSERT INTO `categorysecond` VALUES ('3', '健康首选', '1');
-INSERT INTO `categorysecond` VALUES ('4', '素食美味', '1');
-INSERT INTO `categorysecond` VALUES ('5', '适宜冷藏', '1');
+INSERT INTO `categorysecond` VALUES ('1', '库存新鲜', null);
+INSERT INTO `categorysecond` VALUES ('2', '本季热销', null);
+INSERT INTO `categorysecond` VALUES ('3', '健康首选', null);
+INSERT INTO `categorysecond` VALUES ('4', '素食美味', null);
+INSERT INTO `categorysecond` VALUES ('5', '适宜冷藏', '2');
 INSERT INTO `categorysecond` VALUES ('6', '汁水充沛', '2');
 INSERT INTO `categorysecond` VALUES ('7', '维生素c', '2');
 INSERT INTO `categorysecond` VALUES ('8', '应季最新', '2');
@@ -79,8 +95,9 @@ INSERT INTO `categorysecond` VALUES ('23', '美国代购', '7');
 INSERT INTO `categorysecond` VALUES ('24', '新西兰原产地', '7');
 INSERT INTO `categorysecond` VALUES ('25', '加拿大农场', '7');
 INSERT INTO `categorysecond` VALUES ('26', '水果新品', '8');
-INSERT INTO `categorysecond` VALUES ('28', '蔬菜新品', '8');
-INSERT INTO `categorysecond` VALUES ('29', '肉类新品', '8');
+INSERT INTO `categorysecond` VALUES ('27', '爱尔兰草原', '8');
+INSERT INTO `categorysecond` VALUES ('28', '蔬菜热销', null);
+INSERT INTO `categorysecond` VALUES ('29', '肉类新品', '3');
 
 -- ----------------------------
 -- Table structure for `orderitem`
@@ -98,11 +115,19 @@ CREATE TABLE `orderitem` (
   KEY `FKE8B2AB6140ACF87A` (`oid`),
   CONSTRAINT `orderitem_ibfk_1` FOREIGN KEY (`oid`) REFERENCES `orders` (`oid`),
   CONSTRAINT `orderitem_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `product` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=323 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orderitem
 -- ----------------------------
+INSERT INTO `orderitem` VALUES ('323', '1', '20', '12', '189');
+INSERT INTO `orderitem` VALUES ('324', '1', '20', '10', '190');
+INSERT INTO `orderitem` VALUES ('325', '1', '20', '10', null);
+INSERT INTO `orderitem` VALUES ('326', '1', '22', '8', null);
+INSERT INTO `orderitem` VALUES ('327', '6', '132', '8', null);
+INSERT INTO `orderitem` VALUES ('328', '4', '128', '1', '193');
+INSERT INTO `orderitem` VALUES ('329', '4', '100', '2', null);
+INSERT INTO `orderitem` VALUES ('330', '4', '100', '2', null);
 
 -- ----------------------------
 -- Table structure for `orders`
@@ -120,11 +145,14 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`oid`),
   KEY `FKC3DF62E5AA3D9C7` (`uid`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=196 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
+INSERT INTO `orders` VALUES ('189', '20', '2017-12-10 15:45:06', '1', '', null, null, '4');
+INSERT INTO `orders` VALUES ('190', '20', '2017-12-10 15:46:01', '1', '', null, null, '4');
+INSERT INTO `orders` VALUES ('193', '128', '2017-12-15 19:09:51', '1', null, null, null, '15');
 
 -- ----------------------------
 -- Table structure for `product`
@@ -143,7 +171,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`pid`),
   KEY `FKED8DCCEFB9B74E02` (`csid`),
   CONSTRAINT `product_ibfk_1` FOREIGN KEY (`csid`) REFERENCES `categorysecond` (`csid`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
@@ -158,31 +186,43 @@ INSERT INTO `product` VALUES ('7', '莴苣', '19', '20', 'picture/masonry-08.jpg
 INSERT INTO `product` VALUES ('8', '西红柿', '14', '22', 'picture/masonry-010.jpg', 'Vc补充', '1', '2014-11-03 20:18:00', '1');
 INSERT INTO `product` VALUES ('9', '黄瓜', '10', '20', 'picture/masonry-012.jpg', '热销', '0', '2014-11-03 20:18:00', '1');
 INSERT INTO `product` VALUES ('10', '苦瓜', '15', '20', 'picture/011.jpg', null, '1', '2014-11-03 20:18:00', '1');
-INSERT INTO `product` VALUES ('11', '油麦', '15', '20', 'picture/bc.jpg', null, '1', '2014-11-03 20:18:00', '1');
 INSERT INTO `product` VALUES ('12', '土豆', '20', '20', 'picture/td.jpg', null, '1', '2014-11-03 20:18:00', '2');
 INSERT INTO `product` VALUES ('13', '树莓', '21', '22', 'picture/widget-product-03.jpg', null, '1', '2014-11-03 20:18:00', '2');
 INSERT INTO `product` VALUES ('14', '鸭梨', '22', '25', 'picture/masonry-09.jpg', null, '1', '2014-11-03 20:18:00', '2');
 INSERT INTO `product` VALUES ('15', '牛排', '30', '33', 'picture/cat-03.jpg', null, '1', '2014-11-03 20:18:00', '2');
-INSERT INTO `product` VALUES ('16', '猪扒', '20', '25', 'picture/015.jpg', null, null, null, '2');
-INSERT INTO `product` VALUES ('17', '西红柿', '25', '30', 'picture/masonry-010.jpg', null, null, null, '2');
-INSERT INTO `product` VALUES ('18', '青柠', '21', '23', 'picture/isotope-02.jpg', null, null, null, '2');
-INSERT INTO `product` VALUES ('19', '木瓜', '22', '26', 'picture/blog-detail-01.jpg', null, null, null, '2');
-INSERT INTO `product` VALUES ('20', '茄子', '23', '26', 'picture/qz.jpg', null, null, null, '2');
-INSERT INTO `product` VALUES ('21', '油麦', '24', '26', 'picture/bc.jpg', null, null, null, '2');
-INSERT INTO `product` VALUES ('22', '胡萝卜', '22', '23', 'picture/lb.jpg', null, null, null, '2');
-INSERT INTO `product` VALUES ('23', '生菜', '22', '25', 'picture/01.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('24', '土豆', '26', '30', 'picture/td.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('25', '西蓝花', '26', '28', 'picture/isotope-01.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('26', '木瓜', '22', '26', 'picture/blog-detail-01.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('27', '苹果', '15', '19', 'picture/thumb-cart-02.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('28', '梨', '15', '18', 'picture/09.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('29', '树莓', '15', '20', 'picture/widget-product-03.jpg', null, null, '2017-12-04 19:58:40', '3');
-INSERT INTO `product` VALUES ('30', '青柠', '21', '23', 'picture/isotope-02.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('31', '西瓜', '22', '25', 'picture/xg.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('32', '香蕉', '12', '15', 'picture/xj.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('33', '猪扒', '20', '25', 'picture/015.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('34', '荷兰豆', '22', '25', 'picture/ld.jpg', null, null, null, '3');
-INSERT INTO `product` VALUES ('35', '黄瓜', '12', '15', 'picture/masonry-012.jpg', null, null, null, '3');
+INSERT INTO `product` VALUES ('16', '猪扒', '20', '25', 'picture/015.jpg', null, '0', null, '2');
+INSERT INTO `product` VALUES ('17', '西红柿', '25', '30', 'picture/masonry-010.jpg', null, '0', null, '2');
+INSERT INTO `product` VALUES ('18', '青柠', '21', '23', 'picture/isotope-02.jpg', null, '0', null, '2');
+INSERT INTO `product` VALUES ('19', '木瓜', '22', '26', 'picture/blog-detail-01.jpg', null, '0', null, '2');
+INSERT INTO `product` VALUES ('20', '茄子', '23', '26', 'picture/qz.jpg', null, '0', null, '2');
+INSERT INTO `product` VALUES ('21', '油麦', '24', '26', 'picture/bc.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('22', '胡萝卜', '22', '23', 'picture/lb.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('23', '生菜', '22', '25', 'picture/01.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('24', '土豆', '26', '30', 'picture/td.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('25', '西蓝花', '26', '28', 'picture/isotope-01.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('26', '木瓜', '22', '26', 'picture/blog-detail-01.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('27', '苹果', '15', '19', 'picture/thumb-cart-02.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('28', '梨', '15', '18', 'picture/09.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('29', '树莓', '15', '20', 'picture/widget-product-03.jpg', null, '0', '2017-12-04 19:58:40', '3');
+INSERT INTO `product` VALUES ('30', '青柠', '21', '23', 'picture/isotope-02.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('31', '西瓜', '22', '25', 'picture/xg.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('32', '香蕉', '12', '15', 'picture/xj.jpg', null, '0', null, '3');
+INSERT INTO `product` VALUES ('33', '猪扒', '20', '25', 'picture/015.jpg', null, '0', null, '5');
+INSERT INTO `product` VALUES ('34', '荷兰豆', '22', '25', 'picture/ld.jpg', null, '0', null, '5');
+INSERT INTO `product` VALUES ('35', '黄瓜', '12', '15', 'picture/masonry-012.jpg', null, '0', null, '5');
+INSERT INTO `product` VALUES ('36', '白菜', '22', '23', 'picture/baicai.jpg', null, '0', null, '4');
+INSERT INTO `product` VALUES ('37', '玉米', '22', '25', 'picture/ym.jpg', null, '0', null, '4');
+INSERT INTO `product` VALUES ('38', '柚子', '22', '26', 'picture/yz.jpg', null, '0', null, '4');
+INSERT INTO `product` VALUES ('39', '芹菜', '11', '12', 'picture/qc.jpg', null, '0', null, '4');
+INSERT INTO `product` VALUES ('40', '韭菜', '13', '15', 'picture/jc.jpg', null, '0', null, '4');
+INSERT INTO `product` VALUES ('41', '火腿', '22', '25', 'picture/ht.jpg', null, '0', null, '5');
+INSERT INTO `product` VALUES ('42', '羊肉', '25', '26', 'picture/yy.jpg', null, '0', null, '5');
+INSERT INTO `product` VALUES ('43', '牛肉', '23', '29', 'picture/nr.jpg', null, '0', null, '5');
+INSERT INTO `product` VALUES ('44', '柚子', '22', '25', 'picture/yz.jpg', null, '0', null, '6');
+INSERT INTO `product` VALUES ('45', '丑橘', '26', '29', 'picture/cj.jpg', null, '0', null, '6');
+INSERT INTO `product` VALUES ('46', '葡萄', '22', '23', 'picture/pt.jpg', null, '0', null, '6');
+INSERT INTO `product` VALUES ('47', '提子', '23', '24', 'picture/tz.jpg', null, '0', null, '6');
+INSERT INTO `product` VALUES ('48', '牛肉', '22', '22', 'products/nr.jpg', '', '0', '2017-12-15 19:32:03', null);
 
 -- ----------------------------
 -- Table structure for `user`
@@ -199,17 +239,18 @@ CREATE TABLE `user` (
   `state` int(11) DEFAULT NULL,
   `code` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'aaa', 'aaa', 'aaa', 'aaa@shop.com', '123', '222', '0', '3a82fe82c65e45a59798cea81394fd3507ef5fb6b71642a486b151383430e5ad');
-INSERT INTO `user` VALUES ('2', 'zzz', 'zzz', 'zzz', 'aaa@shop.com', 'zzz', 'zzz', '1', null);
-INSERT INTO `user` VALUES ('3', 'sss', 'sss', '马化腾', 'aaa@shop.com', '1266666', '深圳腾讯', '0', '75e62633ef26458c92e1aaf84514fc9b455e1b64654e4e9d98ed3710d4739229');
-INSERT INTO `user` VALUES ('4', 'sss', 'sss', '马化腾', 'aaa@shop.com', '1266666', '深圳腾讯', '1', null);
-INSERT INTO `user` VALUES ('5', 'qqq', 'qqq', 'qqq', 'aaa@shop.com', '15999', '石家庄', '0', 'ce4934d9344b4ed38a94cc72f7a736cfbd23909d4bfc4dfb87b7a3714b60956c');
-INSERT INTO `user` VALUES ('6', 'qqq', 'qqq', 'qqq', 'aaa@shop.com', '15999', '石家庄', '0', '6c276d62278b4ae8ac01710b126f4a0173fae694e0324ea0987be677686daba7');
-INSERT INTO `user` VALUES ('7', 'sss', 'sss', '马化腾', 'aaa@shop.com', '1266666', '深圳腾讯', '0', '73826bf83e28432d8f7db300ec5dbe549df59c85c2ae4b809941c0776791b405');
-INSERT INTO `user` VALUES ('8', 'sss', 'sss', '马化腾', 'aaa@shop.com', '1266666', '深圳腾讯', '0', '2d352f4911374e52a332b8d1c58eadb45f551c6a1fe04927a64f73d3070e116a');
-INSERT INTO `user` VALUES ('9', 'sss', 'sss', '马化腾', 'aaa@shop.com', '1266666', '深圳腾讯', '0', '7b85fdb58fdf4073a41ee380b9ab19d99841e34e7adc4607a014816d3150df0a');
+INSERT INTO `user` VALUES ('4', 'sss', 'sss', '哈', 'aaa@shop.com', '12306', '深圳腾讯', '1', '');
+INSERT INTO `user` VALUES ('11', 'eee', 'eee', 'eee', 'aaa@shop.com', 'eee', 'eee', '0', '3f4f96ea8bd843f4b14bfe3ff20186e54a094d4f74ee4631a4858e4ec8353894');
+INSERT INTO `user` VALUES ('12', 'vvv', 'vvv', 'vvv', 'aaa@shop.com', 'vvv', 'vvv', '0', 'c3e55865420145ffbccd534891ffca683855f284057b40b998d4b512465b1223');
+INSERT INTO `user` VALUES ('13', 'ggg', 'ggg', 'ggg', 'aaa@shop.com', 'ggg', 'ggg', '1', null);
+INSERT INTO `user` VALUES ('14', 'kkk', 'kkk', 'kkk', 'aaa@shop.com', 'kkk', 'kkk', '0', 'efed9397e8e74df1af2842bdffab6b4459a74865314e48179587ec55a5d2f7e8');
+INSERT INTO `user` VALUES ('15', 'ppp', 'ppp', 'ppp', 'aaa@shop.com', 'ppp', 'ppp', '1', null);
+INSERT INTO `user` VALUES ('16', 'ooo', 'ppp', 'ppp', 'aaa@shop.com', 'ppp', 'ppp', '0', '2ca1aa92a7464b73a41bb0f2aa420700d17a9981ee0143e6a7dd669e98c7bde4');
+INSERT INTO `user` VALUES ('17', 'ooo', 'ppp', 'ppp', 'aaa@shop.com', 'ppp', 'ppp', '0', 'd6fbfdf7a6a04e71be4ea1fe15c1726f259ec86569ff4430ad07c77f8e91cdb0');
+INSERT INTO `user` VALUES ('18', 'jjj', 'jjj', 'jjj', 'aaa@shop.com', 'jjj', 'jjj', '0', '0baab951e76b4a569485eca691c787331475b784afe7488399c1b2620c19c756');
+INSERT INTO `user` VALUES ('19', 'bbb', 'bbb', 'bbb', 'aaa@shop.com', 'bbb', 'bbb', '0', 'ddc1124c2563459db85b8e247c82047e5840c5187c5a4c079cbf51123aca3d5e');

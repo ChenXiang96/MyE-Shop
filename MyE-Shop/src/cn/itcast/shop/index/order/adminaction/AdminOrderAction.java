@@ -36,7 +36,7 @@ public class AdminOrderAction extends ActionSupport implements ModelDriven<Order
 			PageBean<Order> pageBean = orderService.findAllByPage(page);
 			// 将数据存入到值栈中保存到页面
 			ActionContext.getContext().getValueStack().set("pageBean", pageBean);
-			// 页面跳转:
+	
 			return "findAll";
 		}
       
@@ -45,15 +45,14 @@ public class AdminOrderAction extends ActionSupport implements ModelDriven<Order
 			List<OrderItem> list = orderService.findOrderItem(order.getOid());
 			// 显示到页面:
 			ActionContext.getContext().getValueStack().set("list", list);
-			// 页面跳转
+		
 			return "findOrderItem";
 		} 
 		public String delete(){
-			// 调用Service完成 一级分类的删除
-			// 级联删除一定先查询再删除:
+	
 			order = orderService.findByOid(order.getOid());
 			orderService.delete(order);
-			// 进行页面转向:
+	
 			return "deleteSuccess";
 		}
 

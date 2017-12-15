@@ -29,38 +29,34 @@ public class AdminCategoryAction extends ActionSupport implements ModelDriven<Ca
 	}
 
 
-	//后台点击一级分类查询findAll
 	public String findAll(){
-		//查询所有一级分类，通过service
+
 		List<Category> cList = categoryService.findAll();
-		//放到值栈中显示
+
 		ActionContext.getContext().getValueStack().set("cList", cList);
 		return "findAll";
 	}
-	//后台保存一级分类的方法
+	//后台保存一级分类
 	public String save(){
 		categoryService.save(category);
-		
-		//成功后页面跳转
 		return "saveSuccess";
 	}
-	// 删除一级分类的方法:
+
 			public String delete(){
-				// 调用Service完成 一级分类的删除
-				// 级联删除一定先查询再删除:
+				
 				category = categoryService.findByCid(category.getCid());
 				categoryService.delete(category);
 				// 进行页面转向:
 				return "deleteSuccess";
 			}
-	//进行更新一级分类操作，首先通过cid查出来进行页面跳转
+	
 	 public String edit(){
 		category =  categoryService.findByCid(category.getCid());
 		
 		return "editSuccess";
 		
 	 }
-	//更新操作
+	//更新
 	 public String update(){
 		 categoryService.update(category);
 		 return "updateSuccess";

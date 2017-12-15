@@ -61,9 +61,9 @@
 
          <%@ include file="menu.jsp" %>    
       <section class="sub-header shop-detail-1">
-        <img class="rellax bg-overlay" src="${pageContext.request.contextPath}/picture/017.jpg" alt="">
+        <img class="rellax bg-overlay" src="${pageContext.request.contextPath}/picture/ml.jpg" alt="">
         <div class="overlay-call-to-action"></div>
-        <h3 class="heading-style-3">Shop Detail</h3>
+        <h3 class="heading-style-3">商品详情</h3>
       </section>
       
       

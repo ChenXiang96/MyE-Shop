@@ -69,7 +69,10 @@
                   <li>
                   <s:else>
                      <li>
-                 	<a href="${pageContext.request.contextPath }/user_edit.action?uid=<s:property value="#session.existuser.uid"/>"><s:property value="#session.existuser.name"/></a>
+      	<a href="${pageContext.request.contextPath }/user_edit.action?uid=<s:property value="#session.existuser.uid"/>">
+       
+      	     <s:property value="#session.existuser.name"/>
+      	</a>
                      </li>
                      
                       <li style="margin-left:20px">|</li>

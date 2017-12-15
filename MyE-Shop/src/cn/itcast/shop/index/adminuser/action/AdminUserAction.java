@@ -31,13 +31,13 @@ public void setAdminUserService(AdminUserService adminUserService) {
 this.adminUserService = adminUserService;
 }
 
-// 后台登录的执行的方法
+
 public String login() {
-// 调用service方法完成登录
+
 AdminUser existAdminUser = adminUserService.login(adminUser);
 // 判断
 if (existAdminUser == null) {
-	// 用户名或密码错误
+
      this.addActionError("用户名或密码错误！");
 	
 	 
